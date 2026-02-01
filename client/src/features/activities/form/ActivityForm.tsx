@@ -8,11 +8,11 @@ import {
   activitySchema,
   type ActivitySchema,
 } from "../../../lib/schemas/activitySchema";
-import TextInput from "../../../app/router/shared/components/TextInput";
-import SelectInput from "../../../app/router/shared/components/SelectInput";
+import TextInput from "../../../app/shared/components/TextInput";
+import SelectInput from "../../../app/shared/components/SelectInput";
 import { categoryOptions } from "./categoryOptions";
-import DateTimeInput from "../../../app/router/shared/components/DateTimeInput";
-import LocationInput from "../../../app/router/shared/components/LocationInput";
+import DateTimeInput from "../../../app/shared/components/DateTimeInput";
+import LocationInput from "../../../app/shared/components/LocationInput";
 
 export default function ActivityForm() {
   const { handleSubmit, reset, control } = useForm<ActivitySchema>({
@@ -47,7 +47,7 @@ export default function ActivityForm() {
           { ...activity, ...flattenData },
           {
             onSuccess: () => navigate(`/activities/${activity.id}`),
-          }
+          },
         );
       } else {
         createActivity.mutate(flattenData, {
