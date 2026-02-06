@@ -4,11 +4,16 @@ export type Activity = {
   date: Date;
   description: string;
   category: string;
-  isCancelled: number;
+  isCancelled: boolean;
   city: string;
   venue: string;
   latitude: number;
   longitude: number;
+  attendees: Profile[];
+  isGoing: boolean;
+  isHost: boolean;
+  hostId: string;
+  hostDisplayName: string;
 };
 
 export type User = {
@@ -34,7 +39,7 @@ export type LocationIQSuggestion = {
   address: LocationIQAddress;
 };
 
-type LocationIQAddress = {
+export type LocationIQAddress = {
   name: string;
   house_number: string;
   road: string;
@@ -50,4 +55,11 @@ type LocationIQAddress = {
   country: string;
   country_code: string;
   neighbourhood?: string;
+};
+
+export type Profile = {
+  id: string;
+  displayName: string;
+  bio?: string;
+  imageUrl?: string;
 };
