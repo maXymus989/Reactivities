@@ -77,7 +77,3 @@ npm run dev
     email: bob@test.com or tom@test.com
     
     password: Pa$$w0rd 
-
-[.Net 7/React 18](https://github.com/TryCatchLearn/Reactivities-net7react18) 
-
-[.Net 5/React 17](https://github.com/TryCatchLearn/Reactivities-v6)
