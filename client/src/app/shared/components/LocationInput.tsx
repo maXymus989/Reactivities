@@ -4,7 +4,6 @@ import {
   type UseControllerProps,
   useController,
 } from "react-hook-form";
-import { type LocationIQSuggestion } from "../../../../lib/types";
 import {
   Box,
   debounce,
@@ -14,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import type { LocationIQSuggestion } from "../../../lib/types";
 
 type Props<T extends FieldValues> = {
   label: string;
@@ -46,7 +46,7 @@ export default function LocationInput<T extends FieldValues>(props: Props<T>) {
         setLoading(true);
         try {
           const res = await axios.get<LocationIQSuggestion[]>(
-            `${locationURL}q=${query}`
+            `${locationURL}q=${query}`,
           );
           setSuggestions(res.data);
         } catch (error) {
@@ -55,7 +55,7 @@ export default function LocationInput<T extends FieldValues>(props: Props<T>) {
           setLoading(false);
         }
       }, 500),
-    [locationURL]
+    [locationURL],
   );
 
   const handleChange = async (value: string) => {

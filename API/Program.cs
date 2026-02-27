@@ -43,13 +43,11 @@ builder.Services.AddIdentityApiEndpoints<User>(opt =>
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddAuthorization(opt =>
-{
-    opt.AddPolicy("IsActivityHost", policy =>
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("IsActivityHost", policy =>
     {
         policy.Requirements.Add(new IsHostRequirement());
     });
-});
 builder.Services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 

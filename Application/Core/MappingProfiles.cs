@@ -1,5 +1,6 @@
 using Application.Activities.DTOs;
 using Application.Activities.Profiles.DTOs;
+using Application.Profiles.DTOs;
 using AutoMapper;
 using Domain;
 
@@ -22,6 +23,7 @@ public class MappingProfiles : Profile
             .ForMember(d => d.ImageUrl, o => o.MapFrom(s => s.User.ImageUrl))
             .ForMember(d => d.Id, o => o.MapFrom(s => s.User.Id));
         CreateMap<User, UserProfile>();
+        CreateMap<EditProfileDTO, User>();
     }
 
 }

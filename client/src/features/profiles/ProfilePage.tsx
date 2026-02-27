@@ -6,7 +6,7 @@ import { useProfile } from "../../lib/hooks/useProfile";
 
 export default function ProfilePage() {
   const { id } = useParams();
-  const { profile, loadingProfile } = useProfile(id);
+  const { profile, loadingProfile, isCurrentUser } = useProfile(id);
 
   if (loadingProfile) return <Typography>Loading profile...</Typography>;
 
@@ -15,7 +15,7 @@ export default function ProfilePage() {
   return (
     <Grid container>
       <Grid size={12}>
-        <ProfileHeader profile={profile} />
+        <ProfileHeader profile={profile} isCurrentUser={isCurrentUser} />
         <ProfileContent />
       </Grid>
     </Grid>

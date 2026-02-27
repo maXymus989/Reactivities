@@ -13,9 +13,10 @@ import type { Profile } from "../../lib/types";
 
 type Props = {
   profile: Profile;
+  isCurrentUser: boolean;
 };
 
-export default function ProfileHeader({ profile }: Props) {
+export default function ProfileHeader({ profile, isCurrentUser }: Props) {
   const isFollowing = true;
 
   return (
@@ -30,7 +31,7 @@ export default function ProfileHeader({ profile }: Props) {
             />
             <Box display={"flex"} flexDirection={"column"} gap={2}>
               <Typography variant="h4">{profile.displayName}</Typography>
-              {isFollowing && (
+              {isFollowing && !isCurrentUser && (
                 <Chip
                   variant="outlined"
                   color="secondary"
@@ -41,7 +42,7 @@ export default function ProfileHeader({ profile }: Props) {
             </Box>
           </Stack>
         </Grid>
-        <Grid size={4}>
+        <Grid size={4} alignContent={"center"}>
           <Stack spacing={2} alignItems={"center"}>
             <Box
               display={"flex"}
@@ -57,14 +58,19 @@ export default function ProfileHeader({ profile }: Props) {
                 <Typography variant="h3">42</Typography>
               </Box>
             </Box>
-            <Divider sx={{ width: "100%" }} />
-            <Button
-              fullWidth
-              variant="outlined"
-              color={isFollowing ? "error" : "success"}
-            >
-              {isFollowing ? "Unfollow" : "Follow"}
-            </Button>
+
+            {isFollowing && !isCurrentUser && (
+              <>
+                <Divider sx={{ width: "100%" }} />
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color={isFollowing ? "error" : "success"}
+                >
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </Button>
+              </>
+            )}
           </Stack>
         </Grid>
       </Grid>
